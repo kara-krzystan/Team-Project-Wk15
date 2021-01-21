@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Schedule</title>
+  <link rel="stylesheet" href="../../public/stylesheets/style.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="">
+      <div class="">
+        <a class="" href="/">
+        <strong>Easy Scheduler</strong></a>
+      </div>
+
+      <div id="" class="">
+        <div class="">
+          <div class="">
+            <div class="buttons">
+            {{!-- {{#if loggedIn}} --}}
+              <a class="" href="/">Home</a>
+              <a class="" href="/scheduling">Scheduling</a>
+              <a class="" id="logout">Logout</a>
+            {{!-- {{else}} --}}
+              <a class="" href="/login">Login</a>
+            {{!-- {{/if}} --}}
+            </div>
+          </div>
+         </div>
+       </div>
+    </nav>
+  </header>
+
+<main>
+  {{{ body }}}
+</main>
+
+<footer class="footer">
+  <div class="">
+    <p>
+      <strong class="">Blog Site</strong> by <a href="https://github.com/kfreeborg" target="_blank">Kelsey Freeborg</a>. Thanks for checking it out!
+    </p>
+  </div>
+</footer>
+
+  {{!-- {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}} --}}
+  
+</body>
+</html>
