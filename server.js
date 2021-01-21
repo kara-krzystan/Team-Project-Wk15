@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+const express = require("express");
+const routes = require('./routes');
+=======
 const express = require('express');
 const exphbs = require('express-handlebars');
+>>>>>>> 9e1bceec11409cbb405fa14a53ad9000ccc20281
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +24,8 @@ app.get('/', (req, res) => {
 //app.use(express.static('/public'));
 
 const PORT = process.env.PORT || 3003;
+
+app.use(routes);
 
 //starts the server
 app.listen(PORT, () => {
