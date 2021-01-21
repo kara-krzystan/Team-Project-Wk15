@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/kara-krzystan/Team-Project-Wk15#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
