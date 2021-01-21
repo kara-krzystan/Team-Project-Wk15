@@ -1,14 +1,11 @@
-<<<<<<< HEAD
-const express = require("express");
-const routes = require('./routes');
-=======
+
 const express = require('express');
 const exphbs = require('express-handlebars');
->>>>>>> 9e1bceec11409cbb405fa14a53ad9000ccc20281
 
+
+const PORT = process.env.PORT || 3003;
 const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
 
 // const hbs = exphbs.create({ helpers });
 
@@ -21,9 +18,32 @@ app.get('/', (req, res) => {
 });
 
 //static folder to be decided
-//app.use(express.static('/public'));
+//app.use(express.static('/public')
 
-const PORT = process.env.PORT || 3003;
+// configure handlebars (or pug, if you prefer)
+app.engine("handlebars", handlebars({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// configure using our exported passport function.
+// we need to pass the express app we want configured!
+// order is important! you need to set up passport
+// before you start using it in your routes.
+require('./passport')(app);
+
+// use the routes we configured.
+app.use(require('./routes'));
+
+// Here's a little custom error handling middleware
+// that logs the error to console, then renders an
+// error page describing the error.
+app.use((error, req, res, next) => {
+  console.error(error);
+  res.render('error', {
+    user: req.user,
+    error
+  });
+});
+
 
 app.use(routes);
 
@@ -31,3 +51,4 @@ app.use(routes);
 app.listen(PORT, () => {
   console.log(`Listening on localhost:${PORT}`);
 });
+
