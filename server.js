@@ -1,54 +1,67 @@
-
+const path = require('path');
 const express = require('express');
+const app = express();
+const passport = require('passport');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const env = require('dotenv').config();
 const exphbs = require('express-handlebars');
 
+// BodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 3003;
-const app = express();
+// Passport
+app.use(
+  session({
+	  	secret: 'rHUyjs6RmVOD06OdOTsVAyUUCxVXaWci',
+	  	resave: true,
+	  	saveUninitialized: true
+  	})
+); // session secret
 
+app.use(passport.initialize());
+app.use(passport.session());
 
-// const hbs = exphbs.create({ helpers });
+// Handlebars
+const viewsPath = path.join(__dirname, 'views');
+const layoutsPath = path.join(viewsPath, 'layouts');
+const partialsPath = path.join(viewsPath, 'partials');
+app.set('views', viewsPath);
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
-
-// will need to transfer route to controllers, for testing only
-app.get('/', (req, res) => {
-  res.render('login');
+const exphbsConfig = exphbs.create({
+  defaultLayout: 'main',
+  layoutsDir: layoutsPath,
+  partialsDir: [partialsPath],
+  extname: '.hbs'
 });
 
-//static folder to be decided
-//app.use(express.static('/public')
+app.engine('hbs', exphbsConfig.engine);
+app.set('view engine', '.hbs');
 
-// configure handlebars (or pug, if you prefer)
-app.engine("handlebars", handlebars({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+// Models
+const models = require('./models');
 
-// configure using our exported passport function.
-// we need to pass the express app we want configured!
-// order is important! you need to set up passport
-// before you start using it in your routes.
-require('./passport')(app);
+// Express static assets
+app.use(express.static("public"));
 
-// use the routes we configured.
-app.use(require('./routes'));
+// Routes
+const authRoute = require('./controllers/auth.js')(app, passport);
 
-// Here's a little custom error handling middleware
-// that logs the error to console, then renders an
-// error page describing the error.
-app.use((error, req, res, next) => {
-  console.error(error);
-  res.render('error', {
-    user: req.user,
-    error
+// Load passport strategies
+require('./config/passport/passport.js')(passport, models.user);
+
+// Sync Database
+models.sequelize
+  .sync()
+  .then(function() {
+    console.log('Database Connected');
+
+    app.listen(3000, function(err) {
+      if (!err) console.log('Connected at http://localhost:3000');
+      else console.log(err);
+    });
+  })
+  .catch(function(err) {
+    console.log(err, 'Error on Database Sync. Please try again!');
   });
-});
-
-
-app.use(routes);
-
-//starts the server
-app.listen(PORT, () => {
-  console.log(`Listening on localhost:${PORT}`);
-});
-
