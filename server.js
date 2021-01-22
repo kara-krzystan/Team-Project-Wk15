@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-const express = require("express");
 const routes = require('./routes');
-=======
-const express = require('express');
+const Express = require('express');
 const exphbs = require('express-handlebars');
->>>>>>> 9e1bceec11409cbb405fa14a53ad9000ccc20281
 
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const app = Express();
+app.use(Express.urlencoded({ extended: true }));
+app.use(Express.json());
 
 // const hbs = exphbs.create({ helpers });
 
@@ -20,8 +16,7 @@ app.get('/', (req, res) => {
   res.render('login');
 });
 
-//static folder to be decided
-//app.use(express.static('/public'));
+app.use(Express.static('/public'));
 
 const PORT = process.env.PORT || 3003;
 
