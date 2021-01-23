@@ -58,8 +58,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Routes
-const authRoute = require('./controllers/api/login-route.js')(app, passport);
-//app.use(require('./controllers/'));
+//const authRoute = require('./controllers/api/login-route.js')(app, passport);
+app.use(require('./controllers/'));
 
 // Load passport strategies
 require('./config/passport/passport.js')(passport, models.user);
