@@ -1,5 +1,4 @@
-const routes = require('./routes');
-
+const routes = require('./controllers');
 const path = require('path');
 const express = require('express');
 const app = express();
@@ -43,9 +42,7 @@ app.use(passport.session());
 // const partialsPath = path.join(viewsPath, 'partials');
 // app.set('views', viewsPath);
 
-
-
-app.use(Express.static('/public'));
+app.use(express.static('/public'));
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', '.handlebars');
@@ -61,7 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Routes
-const authRoute = require('./controllers/login.js')(app, passport);
+const authRoute = require('./controllers/api/login-route.js')(app, passport);
 //app.use(require('./controllers/'));
 
 // Load passport strategies

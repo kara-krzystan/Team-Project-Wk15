@@ -14,7 +14,7 @@ Appointments.init(
     },
     //--Time
     Appointments_time: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false
       /*,
       references: {
