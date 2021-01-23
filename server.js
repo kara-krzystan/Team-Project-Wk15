@@ -1,3 +1,5 @@
+const routes = require('./routes');
+
 const path = require('path');
 const express = require('express');
 const app = express();
@@ -8,6 +10,9 @@ const env = require('dotenv').config();
 const exphbs = require('express-handlebars');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+app.use(express.json());
+
 // BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,6 +33,7 @@ app.use(
   })
 ); // session secret
 
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -38,8 +44,12 @@ app.use(passport.session());
 // app.set('views', viewsPath);
 
 
+
+app.use(Express.static('/public'));
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', '.handlebars');
+
 
 // Models
 const models = require('./models');
