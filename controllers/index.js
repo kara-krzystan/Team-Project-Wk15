@@ -1,8 +1,10 @@
-const express = require('express');
+const router = require('express').Router();
+const apiRoutes = require('./api');
 
-const router = express.Router();
+router.use('/api', apiRoutes);
 
-// add HTML routes to current router
-router.use(require('./login'));
+router.use((req, res) => {
+  res.send("<h1>Wrong Route!</h1><h3>Please try again.</h3>");
+});
 
 module.exports = router;
