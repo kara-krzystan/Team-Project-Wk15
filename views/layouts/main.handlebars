@@ -8,42 +8,11 @@
 </head>
 <body>
 
-  <header>
-    <nav class="navbar">
-      <div class="">
-        <a class="" href="/">
-        <strong>Easy Scheduler</strong></a>
-      </div>
+ 
 
-      <div id="" class="">
-        <div class="">
-          <div class="">
-            <div class="buttons">
-            {{!-- {{#if loggedIn}} --}}
-              <a class="" href="/">Home</a>
-              <a class="" href="/scheduling">Scheduling</a>
-              <a class="" id="logout">Logout</a>
-            {{!-- {{else}} --}}
-              <a class="" href="/login">Login</a>
-            {{!-- {{/if}} --}}
-            </div>
-          </div>
-         </div>
-       </div>
-    </nav>
-  </header>
+ {{> header}} {{{body}}} {{> footer}}
 
-<main>
-  {{!-- {{{ body }}} --}}
-</main>
 
-<footer class="footer">
-  <div class="">
-    <p>
-      <strong>&copy;2021</strong> Footer goes here!
-    </p>
-  </div>
-</footer>
 
   {{!-- {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
