@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/kara-krzystan/Team-Project-Wk15#readme",
   "dependencies": {
+    "bcrypt": "5.0.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
@@ -33,11 +34,11 @@
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "sequelize": "^6.4.0",
-    "bcrypt": "5.0.0"
+    "sequelize": "^6.4.0"
   },
   "prettier": {
     "arrowParens": "avoid",
     "singleQuote": true
-  }
+  },
+  "devDependencies": {}
 }
