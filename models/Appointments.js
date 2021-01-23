@@ -15,7 +15,12 @@ Appointments.init(
     //--Time
     Appointments_time: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
+      /*,
+      references: {
+        model: 'Timeblock',
+        key: 'id'
+      }*/
     },
     //--appt message
     Appointments_text: {
