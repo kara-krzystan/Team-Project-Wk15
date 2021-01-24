@@ -1,10 +1,21 @@
 const router = require('express').Router();
-const apiRoutes = require('./api');
+// const apiRoutes = require('./api/');
 
-router.use('/api', apiRoutes);
+// router.use('./api', apiRoutes);
 
-router.use((req, res) => {
-  res.send("<h1>Wrong Route!</h1><h3>Please try again.</h3>");
+const adminRoute = require('./api/admin-route');
+const loginRoute = require('./api/login-route');
+const scheduleRoute = require('./api/schedule-route');
+const userRoute = require('./api/user-route');
+
+router.use('/user', userRoute);
+router.use('/admin', adminRoute);
+router.use('/login', loginRoute);
+router.use('/schedule', scheduleRoute);
+
+router.use('/', (req, res) => {
+  res.render('index');
 });
+
 
 module.exports = router;

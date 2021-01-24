@@ -1,48 +1,54 @@
-module.exports = (app, passport) => {
-    app.get('/', (req, res) => {
-        res.render('layouts/main');
-    });
 
-    app.get('/signup', (req, res) => {
-        res.render('signup');
-    });
+const router = require('express').Router();
 
-    app.get('/signin', (req, res) => {
-        res.render('signin');
-    });
+const passport = require('passport');
 
-    app.post(
-        '/signup',
-        passport.authenticate('local-signup', {
+
+
+router.get('/', async (req, res) => {
+    res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
+router.get('/signin', (req, res) => {
+    res.render('signin');
+});
+
+router.post(
+    '/signup',
+    passport.authenticate('local-signup', {
         successRedirect: '/home',
         failureRedirect: '/signup'
-        })
-    );
+    })
+);
 
-    app.get('/home', isLoggedIn, (req, res) => {
-        res.render('home');
-    });
+router.get('/home', isLoggedIn, (req, res) => {
+    res.render('home');
+});
 
-    app.get('/logout', (req, res) => {
-        req.session.destroy(err => {
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
         res.redirect('/');
-        });
     });
+});
 
-    app.post('/signin',
-        passport.authenticate('local-signin', {
+router.post('/signin',
+    passport.authenticate('local-signin', {
         successRedirect: '/home',
         failureRedirect: '/signin'
-        })
-    );
+    })
+);
 
-    function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated()) return next();
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next();
 
-        res.redirect('/signin');
-    }
-};
-  
+    res.redirect('/signin');
+}
+
+
 
 /*const router = require('express').Router();
 
@@ -52,7 +58,7 @@ router.post('/', async (req, res) => {
 //get route code here
 res.send("this Login route was successful (post)");
 });
-    
+
 router.put('/', async (req, res) => {
 //put route code here
 res.send("this Login route was successful (put)");
@@ -68,5 +74,6 @@ router.delete('/', async (req, res) => {
 res.send("this Login route was successful (delete)");
 });
 
-module.exports = router;
+
 */
+module.exports = router;
