@@ -1,6 +1,6 @@
 const User = require('./User');
 const Appointment = require('./Appointments');
-
+const Timeblock = require('./Time-block');
 
 
 
@@ -14,6 +14,9 @@ User.hasMany(Appointment, {
   onDelete: 'SET NULL'
 });
 
+Timeblock.belongsTo(Appointment, {
+  foreignKey: 'appointment_time',
+  onDelete: 'SET NULL'
+})
 
-
-module.exports = { User, Appointment };
+module.exports = { User, Appointment, Timeblock };
