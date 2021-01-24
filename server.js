@@ -37,10 +37,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Handlebars
-// const viewsPath = path.join(__dirname, 'views');
-// const layoutsPath = path.join(viewsPath, 'layouts');
-// const partialsPath = path.join(viewsPath, 'partials');
-// app.set('views', viewsPath);
+const viewsPath = path.join(__dirname, 'views');
+const layoutsPath = path.join(viewsPath, 'layouts');
+const partialsPath = path.join(viewsPath, 'partials');
+app.set('views', viewsPath);
 
 app.use(express.static('/public'));
 
@@ -58,7 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Routes
-//const authRoute = require('./controllers/api/login-route.js')(app, passport);
+
 app.use(require('./controllers/'));
 
 // Load passport strategies
