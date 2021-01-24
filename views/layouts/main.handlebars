@@ -7,16 +7,34 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
-
- 
-
- {{> header}} {{{body}}} {{> footer}}
-
-
-
-  {{!-- {{#if loggedIn}}
-  <script src="/javascript/logout.js"></script>
-  {{/if}} --}}
-  
-</body>
-</html>
+  <div class="wrapper">
+		<header>
+			<h1>
+				<a href="/">Easy Schedule Logo</a>
+			</h1>
+			<nav>
+				<!-- {{#if loggedIn}} -->
+				<a href="/scheduling">Scheduler</a>
+				<button id="logout" class="btn-no-style">Log Out</button>
+				<!-- {{else}} -->
+				<a href="/login">Login / Sign Up</a>
+				<!-- {{/if}} -->
+			</nav>    
+		</header>
+		
+		<main>
+			{{{ body }}}
+		</main>
+		
+		<footer>
+      Footer goes here!
+    </footer>
+	</div>
+		
+	{{!-- {{#if loggedIn}}
+		<script src="/javascript/logout.js"></script>
+		{{/if}} --}}
+		
+	</body>
+	
+	</html>
