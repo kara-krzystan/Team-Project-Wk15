@@ -14,12 +14,13 @@ Appointments.init(
     },
     //--Time
     Appointments_time: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false
+      /*,
       references: {
         model: 'Timeblock',
         key: 'id'
-      }
+      }*/
     },
     //--appt message
     Appointments_text: {

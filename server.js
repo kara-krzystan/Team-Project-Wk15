@@ -1,52 +1,79 @@
+const routes = require('./controllers');
+const path = require('path');
 const express = require('express');
-const bodyparser = require('body-parser');
-const morgan = require('morgan');
-const handlebars = require('express-handlebars');
-
-const PORT = process.env.PORT || 3003;
 const app = express();
+const passport = require('passport');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const env = require('dotenv').config();
+const exphbs = require('express-handlebars');
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-// let's set up some basic middleware for our express app
-// logs requests to the console. not necessary to make passport work, but useful
-app.use(morgan('dev'));
-// Use body-parser for reading form submissions into objects
-app.use(bodyparser.urlencoded({ extended: true }));
-// Use body-parser for reading application/json into objects
-app.use(bodyparser.json());
+app.use(express.json());
 
-// configure handlebars (or pug, if you prefer)
-app.engine("handlebars", handlebars({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+// BodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+const hbs = exphbs.create({
+  helpers: require('./utils/helpers')
+});
 
-// configure using our exported passport function.
-// we need to pass the express app we want configured!
-// order is important! you need to set up passport
-// before you start using it in your routes.
-require('./passport')(app);
+// Passport
+app.use(
+  session({
+    secret: 'Super secret secret',
+    cookie: { expires: 10 * 60 * 1000 },
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+      db: sequelize
+    })
+  })
+); // session secret
 
-// use the routes we configured.
-app.use(require('./routes'));
 
-// Here's a little custom error handling middleware
-// that logs the error to console, then renders an
-// error page describing the error.
-app.use((error, req, res, next) => {
-  console.error(error);
-  res.render('error', {
-    user: req.user,
-    error
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Handlebars
+const viewsPath = path.join(__dirname, 'views');
+const layoutsPath = path.join(viewsPath, 'layouts');
+const partialsPath = path.join(viewsPath, 'partials');
+app.set('views', viewsPath);
+
+app.use(express.static('/public'));
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', '.handlebars');
+
+
+// Models
+const models = require('./models');
+
+// Express static assets
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Routes
+
+app.use(require('./controllers/'));
+
+// Load passport strategies
+require('./config/passport/passport.js')(passport, models.user);
+
+// Sync Database
+sequelize.sync({ force: false })
+  .then(function () {
+    console.log('Database Connected');
+
+    app.listen(3001, function (err) {
+      if (!err) console.log('Connected at http://localhost:3001');
+      else console.log(err);
+    });
+  })
+  .catch(function (err) {
+    console.log(err, 'Error on Database Sync. Please try again!');
   });
-});
-
-// configure sequelize
-require('../shared/middleware/sequelize')()
-.then(() => {
-  // mongo is connected, so now we can start the express server.
-  app.listen(PORT, () => console.log(`Server up and running on ${PORT}.`));
-})
-.catch(err => {
-  // an error occurred connecting to mongo!
-  // log the error and exit
-  console.error('Unable to connect to mongo.')
-  console.error(err);
-});
