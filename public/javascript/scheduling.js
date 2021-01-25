@@ -1,53 +1,121 @@
-let cardElement = document.querySelector('.card');
+const months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+let startYear = 2000;
+let endYear = 2030;
+let month = 0;
+let year = 0;
 
-cardElement.addEventListener('click', flip);
+function loadCalendarMonths() {
+  for (let i = 0; i < months.length; i++) {
+    const doc = document.createElement('div');
+    doc.innerHTML = months[i];
+    doc.classList.add('dropdown-item');
 
-function flip() {
-  cardElement.classList.toggle('flipped');
-}
+    doc.onclick = (function () {
+      const selectedMonth = i;
+      return function () {
+        month = selectedMonth;
+        document.getElementById('curMonth').innerHTML = months[month];
+        loadCalendarDays();
+        return month;
+      };
+    })();
 
-function startTime() {
-  var weekday = new Array();
-  weekday[0] = 'Sunday';
-  weekday[1] = 'Monday';
-  weekday[2] = 'Tuesday';
-  weekday[3] = 'Wednesday';
-  weekday[4] = 'Thursday';
-  weekday[5] = 'Friday';
-  weekday[6] = 'Saturday';
-  var month = new Array();
-  month[0] = 'January';
-  month[1] = 'February';
-  month[2] = 'March';
-  month[3] = 'April';
-  month[4] = 'May';
-  month[5] = 'June';
-  month[6] = 'July';
-  month[7] = 'August';
-  month[8] = 'September';
-  month[9] = 'October';
-  month[10] = 'November';
-  month[11] = 'December';
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  var d = today.getDate();
-  var y = today.getFullYear();
-  var wd = weekday[today.getDay()];
-  var mt = month[today.getMonth()];
-
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('date').innerHTML = d;
-  document.getElementById('day').innerHTML = wd;
-  document.getElementById('month').innerHTML = mt + '/' + y;
-
-  var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-  if (i < 10) {
-    i = '0' + i;
+    document.getElementById('months').appendChild(doc);
   }
-  return i;
 }
+
+function loadCalendarYears() {
+  document.getElementById('years').innerHTML = '';
+
+  for (let i = startYear; i <= endYear; i++) {
+    const doc = document.createElement('div');
+    doc.innerHTML = i;
+    doc.classList.add('dropdown-item');
+
+    doc.onclick = (function () {
+      const selectedYear = i;
+      return function () {
+        year = selectedYear;
+        document.getElementById('curYear').innerHTML = year;
+        loadCalendarDays();
+        return year;
+      };
+    })();
+
+    document.getElementById('years').appendChild(doc);
+  }
+}
+
+function loadCalendarDays() {
+  document.getElementById('calendarDays').innerHTML = '';
+
+  const tmpDate = new Date(year, month, 0);
+  const num = daysInMonth(month, year);
+  const dayofweek = tmpDate.getDay(); // find where to start calendar day of week
+
+  for (let i = 0; i <= dayofweek; i++) {
+    const d = document.createElement('div');
+    d.classList.add('day');
+    d.classList.add('blank');
+    document.getElementById('calendarDays').appendChild(d);
+  }
+
+  for (let i = 0; i < num; i++) {
+    const tmp = i + 1;
+    const d = document.createElement('div');
+    d.id = 'myBtn calendarday_' + i;
+    d.className = 'day';
+    d.innerHTML = tmp;
+
+    document.getElementById('calendarDays').appendChild(d);
+  }
+
+  const clear = document.createElement('div');
+  clear.className = 'clear';
+  document.getElementById('calendarDays').appendChild(clear);
+}
+
+function daysInMonth(month, year) {
+  const d = new Date(year, month + 1, 0);
+  return d.getDate();
+}
+
+window.addEventListener('load', function () {
+  const date = new Date();
+  month = date.getMonth();
+  year = date.getFullYear();
+  document.getElementById('curMonth').innerHTML = months[month];
+  document.getElementById('curYear').innerHTML = year;
+  loadCalendarMonths();
+  loadCalendarYears();
+  loadCalendarDays();
+});
+
+// Get the modal
+const modal = document.getElementById('myModal');
+const btn = document.getElementById('myBtn');
+const span = document.getElementsByClassName('close')[0];
+btn.onclick = function () {
+  modal.style.display = 'block';
+};
+span.onclick = function () {
+  modal.style.display = 'none';
+};
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+};
