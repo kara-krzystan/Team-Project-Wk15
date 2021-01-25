@@ -12,10 +12,11 @@
         <!-- <label for="password-login">Password:</label> -->
         <input class="field" type="password" id="password-login" placeholder="password" />
       </div>
-      <div>
+      {{!-- <div>
         <button type="submit" class="login-btn">Log In</button>
 
-      </div>
+      </div> --}}
+      	<div class="g-signin2" data-onsuccess="onSignIn"></div>
       <p class="signup">Not a member yet? <a href="">Sign Up</a></p>
     </form>
   </div>
@@ -48,5 +49,5 @@
 </div>
 </div> --}}
 
-
-<script src="/javascript/login.js"></script> --}}
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="/javascript/login.js"></script> 
