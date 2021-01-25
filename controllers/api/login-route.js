@@ -4,15 +4,17 @@ const router = require('express').Router();
 const passport = require('passport');
 
 
-
+// should be domain/api/login
 router.get('/', async (req, res) => {
     res.render('login');
 });
 
+// should be domain/api/login/signup
 router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+// should be domain/api/login/signin
 router.get('/signin', (req, res) => {
     res.render('signin');
 });
