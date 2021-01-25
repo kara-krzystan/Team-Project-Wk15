@@ -4,12 +4,13 @@
   margin: 0;
 }
 
-body, html {
+body,
+html {
   height: 100%;
   background-color: #f7f9fb;
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-  Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #01497C;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #01497c;
 }
 
 .wrapper {
@@ -42,17 +43,17 @@ main {
 
 a {
   text-decoration: none;
-  color: #01497C;
+  color: #01497c;
   font-weight: bold;
-  transition: color .2s;
+  transition: color 0.2s;
   padding: 10px 20px;
 }
 
 a:hover {
-  color:#3d7fcf;
+  color: #3d7fcf;
 }
 
-.sched-container {
+/* .sched-container {
   padding: 2em 0em 0em 5em;
 }
 
@@ -263,17 +264,17 @@ a:hover {
   box-sizing: border-box;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-}
+} */
 
 .login-page {
-  background-color: #a8D0E6;
+  background-color: #a8d0e6;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .login-card {
-  background-color:#f7f9fb;
+  background-color: #f7f9fb;
   width: 300px;
   height: 380px;
   margin: 4em auto;
@@ -282,7 +283,7 @@ a:hover {
 }
 
 .login-card-header {
-  padding-top: 15px ;
+  padding-top: 15px;
   text-align: center;
 }
 
@@ -297,7 +298,7 @@ a:hover {
   font-size: 0.9em;
   font-style: italic;
   letter-spacing: 1.2px;
-  background: rgba(240,241,242, 0.7);
+  background: rgba(240, 241, 242, 0.7);
 
   padding: 10px 15px;
   border-radius: 30px;
@@ -309,7 +310,7 @@ a:hover {
 }
 
 .field:focus {
-  border: 2px solid rgba(0, 0, 0, 0.10);
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -319,7 +320,7 @@ button {
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
-  background: #01497C;
+  background: #01497c;
   padding: 10px 50px;
   border: none;
   border-radius: 30px;
@@ -337,11 +338,11 @@ button:hover {
 }
 
 button:focus {
-  background:  #3d7fcf;
+  background: #3d7fcf;
 }
 
 .btn-no-style {
-  color: #01497C;
+  color: #01497c;
   background: none;
   padding: 0;
   border: none;
@@ -349,7 +350,7 @@ button:focus {
   text-decoration: none;
   font-size: 100%;
   font-weight: bold;
-  transition: color .2s;
+  transition: color 0.2s;
 }
 
 .btn-no-style:hover {
@@ -363,10 +364,144 @@ button:focus {
   padding-top: 35px;
 }
 
+.calendar {
+  background-color: #f7f9fb;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.calendar .dropdown {
+  display: none;
+  position: absolute;
+  background-color: #f7f9fb;
+  color: #01497c;
+  text-align: center;
+  font-size: 14pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 160px;
+  left: 0px;
+  z-index: 2000;
+}
+
+.calendar .dropdown .dropdown-item:hover {
+  background-color: #fbe8a6;
+}
+
+.calendar .calendar-btn {
+  background-color: #a8d0e6;
+  color: #f7f9fb;
+  text-align: center;
+  font-size: 14pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: relative;
+  width: 20%;
+  transition: 0.5s background-color;
+  border-radius: 30px;
+}
+
+.calendar .calendar-btn:hover {
+  background-color: #fbe8a6;
+}
+
+.calendar .year-btn {
+  float: right;
+}
+
+.calendar .calendar-dates .days .day {
+  float: left;
+  width: 12%;
+  margin: 1%;
+  padding: 1%;
+  font-size: 13pt;
+  text-align: center;
+  border-radius: 30px;
+  border: solid 1px #01497c;
+  color: #01497c;
+}
+
+.calendar .calendar-dates .days .day:hover {
+  background-color: #fbe8a6;
+  transition: 0.5s background-color;
+}
+
+.calendar .calendar-dates .days .day.blank {
+  background-color: #f7f9fb;
+  border: none;
+}
+
+.calendar .calendar-dates .days .day.label {
+  height: 40px;
+  background-color: #f7f9fb;
+  color: #01497c;
+  border: none;
+  font-weight: bold;
+}
+
+.clear {
+  clear: both;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #01497c;
+  color: #fbe8a6;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #fbe8a6;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 footer {
   border-top: 1px solid #212121;
   background-color: #a7a7a7;
   display: flex;
   justify-content: center;
   padding: 1%;
+}
+
+@media only screen and (max-width: 960px) {
+  .calendar {
+    width: 100%;
+    margin: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    position: relative;
+    left: 0px;
+  }
 }
