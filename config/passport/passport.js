@@ -21,7 +21,7 @@ module.exports = (passport, user) => {
   });
 
   passport.use(
-    'local-signup',
+    'local',
     new LocalStrategy(
       {
         usernameField: 'email',
@@ -29,7 +29,7 @@ module.exports = (passport, user) => {
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
 
-      function(req, email, password, done) {
+      function (req, email, password, done) {
         var generateHash = password => {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         };
@@ -66,7 +66,7 @@ module.exports = (passport, user) => {
 
   //LOCAL SIGNIN
   passport.use(
-    'local-signin',
+    'local-login',
     new LocalStrategy(
       {
         // by default, local strategy uses username and password, we will override with email
@@ -75,7 +75,7 @@ module.exports = (passport, user) => {
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
 
-      function(req, email, password, done) {
+      function (req, email, password, done) {
         var User = user;
 
         var isValidPassword = (userpass, password) => {
@@ -85,21 +85,20 @@ module.exports = (passport, user) => {
         User.findOne({ where: { email: email } })
           .then(user => {
             if (!user) {
-              return done(null, false, { message: 'Email does not exist' });
+              return done(null, false, { message: 'Invaid email' });
             }
 
             if (!isValidPassword(user.password, password)) {
               return done(null, false, { message: 'Incorrect password.' });
             }
 
-            var userinfo = user.get();
 
-            return done(null, userinfo);
+            return done(null, user);
           })
           .catch(err => {
             console.log('Error:', err);
 
-            return done(null, false, {
+            return done(err, {
               message: 'Something went wrong with your Signin'
             });
           });

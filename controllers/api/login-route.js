@@ -1,12 +1,56 @@
 
 const router = require('express').Router();
-
 const passport = require('passport');
+const { User } = require("../../models");
 
 
 // should be domain/api/login
 router.get('/', async (req, res) => {
     res.render('login');
+});
+
+router.get('/home', isLoggedIn, (req, res) => {
+    res.render('home');
+});
+
+
+router.post('/', (req, res) => {
+    console.log('f')
+    User.findOne({
+        where: {
+            email: req.body.email
+        }
+    }).then(dbUserData => {
+        if (!dbUserData) {
+            res.status(400).json({ message: 'No user with that user name!' });
+            return;
+        }
+
+        const validPassword = dbUserData.checkPassword(req.body.password);
+
+        if (!validPassword) {
+            res.status(400).json({ message: 'Incorrect password!' });
+            return;
+        }
+
+        req.session.save(() => {
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
+
+            res.json({ user: dbUserData, message: 'You are now logged in!' });
+        });
+    });
+});
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    }
+    else {
+        res.status(404).end();
+    }
 });
 
 // should be domain/api/login/signup
@@ -15,8 +59,8 @@ router.get('/signup', (req, res) => {
 });
 
 // should be domain/api/login/signin
-router.get('/signin', (req, res) => {
-    res.render('signin');
+router.get('/login', (req, res) => {
+    res.render('login');
 });
 
 router.post(
@@ -27,27 +71,18 @@ router.post(
     })
 );
 
-router.get('/home', isLoggedIn, (req, res) => {
-    res.render('home');
-});
 
-router.get('/logout', (req, res) => {
-    req.session.destroy(err => {
-        res.redirect('/');
-    });
-});
-
-router.post('/signin',
-    passport.authenticate('local-signin', {
+router.post('/login',
+    passport.authenticate('local-login', {
         successRedirect: '/home',
-        failureRedirect: '/signin'
+        failureRedirect: '/login'
     })
 );
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
 
-    res.redirect('/signin');
+    res.redirect('/login');
 }
 
 

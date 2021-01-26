@@ -15,8 +15,11 @@ User.hasMany(Appointment, {
 });
 
 Timeblock.hasMany(Appointment, {
-  foreignKey: 'appointment_time',
+
+  foreignKey: 'appointments_time',
+
   onDelete: 'SET NULL'
 })
+
 
 module.exports = { User, Appointment, Timeblock };
