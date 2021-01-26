@@ -15,7 +15,9 @@ User.hasMany(Appointment, {
 });
 
 Timeblock.hasMany(Appointment, {
+
   foreignKey: 'appointments_time',
+
   onDelete: 'SET NULL'
 })
 
