@@ -2,7 +2,7 @@ const { Appointment } = require('../models');
 
 const appointmentdata = [
   {
-    Appointments_time: '7:00 AM',
+    Appointments_time: 2,
     Appointments_date: 7,
     Appointments_day: 'Sunday',
     Appointments_text: 'Routine checkup',
@@ -10,7 +10,7 @@ const appointmentdata = [
     user_id: 1,
   },
   {
-    Appointments_time: '10:00 AM',
+    Appointments_time: 5,
     Appointments_date: 5,
     Appointments_day: 'Friday',
     Appointments_text: 'Runny nose',

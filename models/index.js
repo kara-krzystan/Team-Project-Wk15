@@ -14,9 +14,10 @@ User.hasMany(Appointment, {
   onDelete: 'SET NULL'
 });
 
-Timeblock.belongsTo(Appointment, {
-  foreignKey: 'appointment_time',
+Timeblock.hasMany(Appointment, {
+  foreignKey: 'appointments_time',
   onDelete: 'SET NULL'
 })
+
 
 module.exports = { User, Appointment, Timeblock };
