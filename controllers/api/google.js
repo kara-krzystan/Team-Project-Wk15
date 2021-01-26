@@ -21,3 +21,4 @@ module.exports = (app, passport) => {
       res.redirect('/');
     });
 }
+

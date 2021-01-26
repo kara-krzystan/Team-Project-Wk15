@@ -22,7 +22,7 @@ async function loginFormHandler(event) {
     console.log(response)
     if (response.ok) {
       //debugger
-      document.location.replace('/');
+      document.location.replace('/api/schedule');
     } else {
       alert((await response.json()).message);
     }
@@ -31,7 +31,7 @@ async function loginFormHandler(event) {
 
 document.querySelector(".login-form").addEventListener('submit', loginFormHandler);
 
-function onSignIn(googleUser) {
+async function onSignIn(googleUser) {
   console.log(googleUser)
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -41,13 +41,27 @@ function onSignIn(googleUser) {
   console.log('Last Name: ' + profile.getFamilyName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  /*
-  Still have to make a new user with this
-  */
-  // connection.query(`INSERT INTO employee(firstname, lastname, email, username)VALUES("${profile.getGivenName()}", "${profile.getFamilyName()}", ${profile.getEmail()}, ${profile.getName()})`,)
-  // console.log('Employee added');
+  const username = profile.getName();
+  const password = profile.getImageUrl();
+  const email = profile.getEmail();
+  const firstname = profile.getGivenName();
+  const lastname = profile.getFamilyName();
 
-  if (googleUser) {
-    document.location.replace('/');
+  if (username && password && email && firstname && lastname) {
+    const response = await fetch('/api/users', {
+      method: 'post',
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+        firstname,
+        lastname,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (googleUser) {
+      document.location.replace('/api/schedule');
+    }
   }
 }
