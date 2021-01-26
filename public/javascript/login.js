@@ -22,7 +22,7 @@ async function loginFormHandler(event) {
     console.log(response)
     if (response.ok) {
       //debugger
-      document.location.replace('/');
+      document.location.replace('/api/schedule');
     } else {
       alert((await response.json()).message);
     }
@@ -48,6 +48,6 @@ function onSignIn(googleUser) {
   // console.log('Employee added');
 
   if (googleUser) {
-    document.location.replace('/');
+    document.location.replace('/api/schedule');
   }
 }

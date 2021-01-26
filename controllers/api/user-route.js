@@ -2,8 +2,7 @@ const router = require('express').Router();
 const { User } = require("../../models")
 //routes will use /api/User/ {route}
 
-router.post('/login', (req, res) => {
-  console.log("hi")
+router.post('/', (req, res) => {
   User.findOne({
     where: {
       email: req.body.email
@@ -35,13 +34,24 @@ router.put('/', async (req, res) => {
   res.send("this User route was successful (put)");
 });
 
-router.get('/', async (req, res) => {
-  //get route code here
-  res.render('homepage');
-});
-
+//Maybe later
 router.delete('/', async (req, res) => {
-  //delete route code here
+  User.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbUserData => {
+      if (!dbUserData) {
+        res.status(404).json({ message: 'No User found with this id!' });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   res.send("this User route was successful (delete)");
 });
 
