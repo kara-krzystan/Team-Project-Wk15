@@ -2,14 +2,10 @@
   box-sizing: border-box;
 }
 
-<<<<<<< HEAD
 body,
 html {
-=======
-body, html {
   padding: 0;
   margin: 0;
->>>>>>> bd53d942a6b3d92849f1a6aec468ffa037ee0ba1
   height: 100%;
   background-color: #f7f9fb;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -59,8 +55,9 @@ a:hover {
   color: #3d7fcf;
 }
 
-.login-page, .signup-page {
-  background-color: #a8D0E6;
+.login-page,
+.signup-page {
+  background-color: #a8d0e6;
   height: 100%;
   width: 100%;
   display: flex;
@@ -68,15 +65,16 @@ a:hover {
 }
 
 .index-landing-page {
-  background-color: #B4DFE5;
+  background-color: #b4dfe5;
   height: 100%;
   width: 100%;
   display: flex;
   margin-top: 0;
 }
 
-.login-card, .signup-card {
-  background-color:#f7f9fb;
+.login-card,
+.signup-card {
+  background-color: #f7f9fb;
   width: 300px;
   height: 460px;
   margin: 2em auto;
@@ -85,19 +83,22 @@ a:hover {
   display: flex;
 }
 
-.login-card-header, .signup-card-header {
+.login-card-header,
+.signup-card-header {
   margin: 20px auto;
   text-align: center;
-  color:#212121;
+  color: #212121;
 }
 
-.login-wrap, .signup-wrap {
-  align-self:center;
+.login-wrap,
+.signup-wrap {
+  align-self: center;
   margin: auto;
   width: 98%;
 }
 
-.login-form, .signup-form {
+.login-form,
+.signup-form {
   padding: 30px 5px 10px;
 }
 
@@ -108,7 +109,7 @@ a:hover {
   font-size: 0.9em;
   font-style: italic;
   letter-spacing: 1.2px;
-  background: rgba(240,241,242, 0.7);
+  background: rgba(240, 241, 242, 0.7);
   padding: 10px 15px;
   border-radius: 30px;
   outline: none;
@@ -126,7 +127,7 @@ button {
   cursor: pointer;
   outline: none;
   color: #fff;
-  background: #01497C;
+  background: #01497c;
   display: flex;
   justify-content: center;
   height: 40px;
@@ -141,7 +142,8 @@ button:hover {
   background-color: #3d7fcf;
 }
 
-.login-btn, .signup-btn {
+.login-btn,
+.signup-btn {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -323,4 +325,3 @@ footer {
     left: 0px;
   }
 }
-

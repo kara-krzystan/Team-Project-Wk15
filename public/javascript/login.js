@@ -3,13 +3,13 @@
 const users = []
 async function loginFormHandler(event) {
   event.preventDefault();
-
+  console.log("hi")
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
   if (email && password) {
     console.log(email, password)
-    const response = await fetch('../../api/user/login', {
+    const response = await fetch('/api/login', {
       method: 'post',
       body: JSON.stringify({
         email,
@@ -18,17 +18,18 @@ async function loginFormHandler(event) {
       headers: { 'Content-Type': 'application/json' }
 
     })
+
     console.log(response)
     if (response.ok) {
-      debugger
+      //debugger
       document.location.replace('/');
     } else {
-      alert(response.statusText);
+      alert((await response.json()).message);
     }
   }
 }
 
-addEventListener('submit', loginFormHandler);
+document.querySelector(".login-form").addEventListener('submit', loginFormHandler);
 
 function onSignIn(googleUser) {
   console.log(googleUser)
@@ -43,7 +44,8 @@ function onSignIn(googleUser) {
   /*
   Still have to make a new user with this
   */
-
+  // connection.query(`INSERT INTO employee(firstname, lastname, email, username)VALUES("${profile.getGivenName()}", "${profile.getFamilyName()}", ${profile.getEmail()}, ${profile.getName()})`,)
+  // console.log('Employee added');
 
   if (googleUser) {
     document.location.replace('/');

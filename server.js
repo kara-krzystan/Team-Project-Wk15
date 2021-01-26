@@ -1,4 +1,3 @@
-const routes = require('./controllers');
 const path = require('path');
 const express = require('express');
 const app = express();
@@ -60,7 +59,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 
 app.use(require('./controllers/'));
+app.use(function (req, res, next) {
+  res.status(404).send('Cant find route');
 
+})
 // Load passport strategies
 require('./config/passport/passport.js')(passport, models.user);
 

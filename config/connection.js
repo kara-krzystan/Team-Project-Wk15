@@ -30,4 +30,16 @@ passport.use(new GoogleStrategy({
     });
   }
 ));
+
+// let connection;
+// try {
+//   connection = connect();
+// } catch (err) {
+//   console.error(err)
+// } finally {
+//   if (connection)
+//     connection.end();
+// }
+
+
 module.exports = sequelize;

@@ -3,7 +3,6 @@ const { User } = require("../../models")
 //routes will use /api/User/ {route}
 
 router.post('/login', (req, res) => {
-  debugger
   console.log("hi")
   User.findOne({
     where: {

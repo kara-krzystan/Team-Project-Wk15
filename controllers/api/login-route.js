@@ -1,6 +1,7 @@
 
 const router = require('express').Router();
 const passport = require('passport');
+const { User } = require("../../models");
 
 
 // should be domain/api/login
@@ -13,10 +14,11 @@ router.get('/home', isLoggedIn, (req, res) => {
 });
 
 
-router.post('/login', (req, res) => {
+router.post('/', (req, res) => {
+    console.log('f')
     User.findOne({
         where: {
-            username: req.body.username
+            email: req.body.email
         }
     }).then(dbUserData => {
         if (!dbUserData) {
@@ -57,8 +59,8 @@ router.get('/signup', (req, res) => {
 });
 
 // should be domain/api/login/signin
-router.get('/signin', (req, res) => {
-    res.render('signin');
+router.get('/login', (req, res) => {
+    res.render('login');
 });
 
 router.post(
@@ -70,17 +72,17 @@ router.post(
 );
 
 
-router.post('/signin',
-    passport.authenticate('local-signin', {
+router.post('/login',
+    passport.authenticate('local-login', {
         successRedirect: '/home',
-        failureRedirect: '/signin'
+        failureRedirect: '/login'
     })
 );
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
 
-    res.redirect('/signin');
+    res.redirect('/login');
 }
 
 
