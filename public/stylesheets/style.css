@@ -312,6 +312,9 @@ footer {
   background-color: #d3d3d3;
   display: flex;
   justify-content: center;
+  color: #212121;
+  font-size: .8em;
+  font-style: italic;
   padding: 3%;
 }
 
