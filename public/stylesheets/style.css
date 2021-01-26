@@ -65,11 +65,36 @@ a:hover {
 }
 
 .index-landing-page {
-  background-color: #b4dfe5;
+  /* background-color: #b4dfe5; */
+  background-image: url("../images/bg-test.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
   height: 100%;
   width: 100%;
   display: flex;
   margin-top: 0;
+}
+
+.headline-cta {
+  background-color: #f7f9fb;
+  height: fit-content;
+  width: 60%;
+  text-align: center;
+  margin: 3em auto;
+  border-radius: 1em;
+  padding: 2px 10px;
+}
+
+.display-features {
+  background-color: #f7f9fb;
+  height: fit-content;
+  width: 60%;
+  text-align: center;
+  margin: 3em auto;
+  border-radius: 1em;
+  padding: 2px 10px;
 }
 
 .login-card,
