@@ -37,7 +37,7 @@ router.put('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
   //get route code here
-  res.send("this User route was successful (get)");
+  res.render('homepage');
 });
 
 router.delete('/', async (req, res) => {

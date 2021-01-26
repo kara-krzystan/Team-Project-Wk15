@@ -14,7 +14,7 @@ res.send("this SignUp route was successful (put)");
 
 router.get('/', async (req, res) => {
 //get route code here
-res.send("this SignUp route was successful (get)");
+res.render('signup');
 });
 
 router.delete('/', async (req, res) => {
