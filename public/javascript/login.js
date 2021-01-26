@@ -4,30 +4,31 @@ const users = []
 async function loginFormHandler(event) {
   event.preventDefault();
 
-  const username = document.querySelector('#username-login').value.trim();
+  const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
-  if (username && password) {
-    const response = await fetch('/api/users/login', {
+  if (email && password) {
+    console.log(email, password)
+    const response = await fetch('../../api/user/login', {
       method: 'post',
       body: JSON.stringify({
-        username,
+        email,
         password
       }),
       headers: { 'Content-Type': 'application/json' }
-    });
 
+    })
+    console.log(response)
     if (response.ok) {
+      debugger
       document.location.replace('/');
     } else {
       alert(response.statusText);
     }
   }
 }
-console.log(1)
 
-
-//document.querySelector('#login-form').addEventListener('submit', loginFormHandler);
+addEventListener('submit', loginFormHandler);
 
 function onSignIn(googleUser) {
   console.log(googleUser)

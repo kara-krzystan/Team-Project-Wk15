@@ -1,53 +1,42 @@
 <div class="login-page">
   <div class="login-card">
-    <div class="login-card-header">
-      <h2>Welcome!</h2>
+    <div class="login-wrap">
+      
+      <div class="login-card-header">
+        <h2>Welcome!</h2>
+      </div>
+      
+      <form class="login-form">
+        <div>
+          <input class="field" type="text" id="email-login" placeholder="e-mail address" />
+        </div>
+        
+        <div>
+          <input class="field" type="password" id="password-login" placeholder="password" />
+        </div>
+        
+        <div>
+          <button type="submit" class="login-btn">Log In with Email</button>
+        </div>
+        
+        <div>
+          <p class="signup-txt">- or -</p>
+        </div>
+            
+        <div class="g-signin2" data-onsuccess="onSignIn">
+          <button type="submit" class="login-btn-google">Log In with Google</button>
+        </div>
+        
+        <div>
+          <p class="signup-txt">Not a member yet? <a href="/api/signup">Sign Up</a></p>
+        </div>
+      
+      </form>
     </div>
-    <form class="login-form">
-      <div>
-        <!-- <label for="email-login">Email:</label> -->
-        <input class="field" type="text" id="email-login" placeholder="e-mail address" />
-      </div>
-      <div>
-        <!-- <label for="password-login">Password:</label> -->
-        <input class="field" type="password" id="password-login" placeholder="password" />
-      </div>
-      {{!-- <div>
-        <button type="submit" class="login-btn">Log In</button>
-
-      </div> --}}
-      	<div class="g-signin2" data-onsuccess="onSignIn"></div>
-      <p class="signup">Not a member yet? <a href="">Sign Up</a></p>
-    </form>
   </div>
 </div>
 
-{{!-- ***Move?*** --}}
-
-{{!-- <div class="sign-up">
-  <form action="" class="signup-form">
-  <div class="">
-    <label for="" class="">Email</label>
-    <input type="text" class="" />
-  </div>  
-  <div class="">
-    <label for="" class="">Username</label>
-    <input type="text" class="" />
-  </div>  
-  <div class="">
-    <label for="" class="">Password</label>
-    <input type="text" class="" />
-  </div>
-  <div class="">
-    <label for="" class="">Admin</label>
-    <input type="radio" class="" />
-  </div>
-  <div class="">
-    <button type="button">Sign Up!</button>
-  </div>
-</form>
-</div>
-</div> --}}
-
+<script src="/javascript/login.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="/javascript/login.js"></script> 
+{{!--*****GMAIL for Pat added above **** --}}
+{{!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> --}}
