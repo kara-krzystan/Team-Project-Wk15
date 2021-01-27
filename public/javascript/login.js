@@ -22,7 +22,7 @@ async function loginFormHandler(event) {
     console.log(response)
     if (response.ok) {
       //debugger
-      document.location.replace('/api/schedule');
+      document.location.replace('/api/homepage');
     } else {
       alert((await response.json()).message);
     }
@@ -61,11 +61,11 @@ function onSignIn(googleUser) {
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-      document.location.replace('/api/schedule');
+      document.location.replace('/api/homepage');
     }
   }
   if (googleUser) {
-    document.location.replace('/api/schedule');
+    document.location.replace('/api/homepage');
   }
 
 }
