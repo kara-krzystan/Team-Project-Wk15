@@ -27,7 +27,7 @@ Appointments.init(
       allowNull: false
     },
     // app day
-    Appointments_day:{
+    Appointments_day: {
       type: DataTypes.STRING,
       allowNull: false
     },
