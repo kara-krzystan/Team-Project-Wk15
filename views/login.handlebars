@@ -1,3 +1,4 @@
+
 <div class="login-page">
   <div class="login-card">
     <div class="login-wrap">
@@ -22,9 +23,11 @@
         <div>
           <p class="signup-txt">- or -</p>
         </div>
-            
-        <div class="g-signin2" data-onsuccess="onSignIn">
-          <button type="button" class="login-btn-google">Log In with Google</button>
+
+        <div class="g-signin2" id= data-onsuccess="onSignIn" align="center">
+          <meta name="google-signin-client_id" content=
+          "592878734224-1ri6pfkmfslqvnv82ks1bs7n7scaljtn.apps.googleusercontent.com">
+          {{!-- <button type="button" class="login-btn-google">Log In with Google</button> --}}
         </div>
         
         <div>
@@ -38,7 +41,3 @@
 
 <script src="/javascript/login.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-{{!--*****GMAIL for Pat added above **** --}}
-
-{{!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> --}}
-
