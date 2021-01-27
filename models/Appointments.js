@@ -14,9 +14,8 @@ Appointments.init(
     },
     //--Time
     Appointments_time: {
-      type: DataTypes.STRING,
-      allowNull: false
-      ,
+      type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'Timeblock',
         key: 'id'
@@ -28,10 +27,9 @@ Appointments.init(
       allowNull: false
     },
     // app day
-    
-      Appointments_day:{
-        type: DataTypes.STRING,
-        allowNull: false
+    Appointments_day:{
+      type: DataTypes.STRING,
+      allowNull: false
     },
     //--appt message
     Appointments_text: {
