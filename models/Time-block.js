@@ -15,7 +15,6 @@ Timeblock.init(
   time: {
       type: DataTypes.STRING,
       allowNull: false,
-
   }
   },
   {

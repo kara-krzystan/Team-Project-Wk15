@@ -29,6 +29,7 @@ router.post('/', (req, res) => {
     });
   });
 });
+
 router.put('/', async (req, res) => {
   //put route code here
   res.send("this User route was successful (put)");
