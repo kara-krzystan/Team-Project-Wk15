@@ -71,7 +71,7 @@ sequelize.sync({ force: false })
   .then(function () {
     console.log('Database Connected');
 
-    app.listen(Port, function (err) {
+    app.listen(PORT, function (err) {
       if (!err) console.log('Connected at http://localhost:3001');
       else console.log(err);
     });

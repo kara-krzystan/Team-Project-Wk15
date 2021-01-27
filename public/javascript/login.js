@@ -60,6 +60,9 @@ function onSignIn(googleUser) {
       }),
       headers: { 'Content-Type': 'application/json' },
     });
+    if (response.ok) {
+      document.location.replace('/api/schedule');
+    }
   }
   if (googleUser) {
     document.location.replace('/api/schedule');
