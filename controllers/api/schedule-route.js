@@ -12,8 +12,12 @@ router.post('/', async (req, res) => {
     Appointments_type: Appointments_type,
     user_id,
 
-  });
-  res.json(appt);
+  })
+    .then(dbAppointmentData => res.json(dbAppointmentData))
+    .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    });
 });
 
 router.put('/', async (req, res) => {
