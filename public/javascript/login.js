@@ -31,16 +31,17 @@ async function loginFormHandler(event) {
 
 document.querySelector(".login-form").addEventListener('submit', loginFormHandler);
 
-async function onSignIn(googleUser) {
+function onSignIn(googleUser) {
   console.log(googleUser)
+
   var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('ID: ' + profile.getId());
-  console.log('Full Name: ' + profile.getName());
-  console.log('First Name: ' + profile.getGivenName());
-  console.log('Last Name: ' + profile.getFamilyName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  // console.log('ID: ' + profile.getId());
+  // console.log('Full Name: ' + profile.getName());
+  // console.log('First Name: ' + profile.getGivenName());
+  // console.log('Last Name: ' + profile.getFamilyName());
+  // console.log('Image URL: ' + profile.getImageUrl());
+  // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   const username = profile.getName();
   const password = profile.getImageUrl();
   const email = profile.getEmail();
@@ -48,7 +49,7 @@ async function onSignIn(googleUser) {
   const lastname = profile.getFamilyName();
 
   if (username && password && email && firstname && lastname) {
-    const response = await fetch('/api/users', {
+    const response = fetch('/api/users', {
       method: 'post',
       body: JSON.stringify({
         username,
@@ -59,9 +60,12 @@ async function onSignIn(googleUser) {
       }),
       headers: { 'Content-Type': 'application/json' },
     });
-
-    if (googleUser) {
+    if (response.ok) {
       document.location.replace('/api/schedule');
     }
   }
+  if (googleUser) {
+    document.location.replace('/api/schedule');
+  }
+
 }

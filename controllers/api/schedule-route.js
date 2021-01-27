@@ -3,14 +3,15 @@ const { Appointment, Timeblock, User } = require('../../models');
 //routes will use /api/schedule/ {route}
 
 router.post('/', async (req, res) => {
-  const { time, date, day, text, type, user_id } = req.body;
+  const { Appointments_time, Appointments_date, Appointments_day, Appointments_text, Appointments_type, user_id } = req.body;
   const appt = await Appointment.create({
-    Appointments_time: time,
-    Appointments_date: date,
-    Appointments_day: day, 
-    Appointments_text: text,
-    Appointments_type: type,
+    Appointments_time: Appointments_time,
+    Appointments_date: Appointments_date,
+    Appointments_day: Appointments_day,
+    Appointments_text: Appointments_text,
+    Appointments_type: Appointments_type,
     user_id,
+
   });
   res.json(appt);
 });
