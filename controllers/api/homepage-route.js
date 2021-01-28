@@ -1,30 +1,33 @@
 const router = require('express').Router();
-const { Appointment, Timeblock, User } = require('../../models');
+const { Appointments, Timeblock, User } = require('../../models');
 
 router.get('/', (req, res) => {
   console.log('======================');
-  Appointment.findAll({
+  Appointments.findAll({
+    where: {
+      user_id: req.session.user_id
+    },
     include: [
       {
-        model: Appointment,
-        attributes: ['id', 'Appointment_time', 'Appointments_date', 'Appointments_day', 'Appointments_text', 'user_id'],
+        model: Appointments,
+        attributes: ['id', 'Appointments_time', 'Appointments_date', 'Appointments_day', 'Appointments_text', 'user_id'],
         include: {
           model: User,
-          attributes: ['user']
+          attributes: ['username']
         }
       },
       {
         model: User,
-        attributes: ['user']
+        attributes: ['username']
       }
     ]
   })
-    .then(dbAppointmentData => {
-      const posts = dbAppointmentData.map(appointment => appointment.get({ plain: true }));
+    .then(dbAppointmentsData => {
+      const posts = dbAppointmentsData.map(appointments => appointments.get({ plain: true }));
       console.log(appointments)
       res.render('homepage', {
         appointments,
-        loggedIn: req.session.loggedIn
+        loggedIn: true
       });
     })
     .catch(err => {
