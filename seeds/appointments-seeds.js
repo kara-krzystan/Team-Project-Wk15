@@ -17,6 +17,27 @@ const appointmentdata = [
     Appointments_type: 'Follow up',
     user_id: 2,
   },
+  {
+    Appointments_time: 9,
+    Appointments_date: 2,
+    Appointments_day: 'Tuesday',
+    Appointments_text: 'X-ray broken arm',
+    Appointments_type: 'X-ray',
+  },
+  {
+    Appointments_time: 10,
+    Appointments_date: 3,
+    Appointments_day: 'Wednesday',
+    Appointments_text: 'Covid test',
+    Appointments_type: 'Testing',
+  },
+  {
+    Appointments_time: 11,
+    Appointments_date: 4,
+    Appointments_day: 'Thursday',
+    Appointments_text: 'Sore Throat',
+    Appointments_type: 'Well-check',
+  },
 ];
 
 const seedPosts = () => Appointment.bulkCreate(appointmentdata);
