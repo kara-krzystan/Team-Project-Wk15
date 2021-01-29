@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Appointment, Timeblock, User } = require('../../models');
 
 router.get('/', (req, res) => {
-  console.log('======================');
+  console.log(req.session.user_id);
   Appointment.findAll({
     where: {
       user_id: req.session.user_id
