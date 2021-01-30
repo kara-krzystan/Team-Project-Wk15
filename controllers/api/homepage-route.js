@@ -5,24 +5,33 @@ router.get('/', (req, res) => {
   console.log('======================');
   Appointment.findAll({
     where: {
-      user_id: req.session.user_id
+      user_id: req.session.user_id,
     },
 
-    attributes: ['id', 'Appointments_time', 'Appointments_date', 'Appointments_day', 'Appointments_text', 'user_id'],
+    attributes: [
+      'id',
+      'Appointments_time',
+      'Appointments_date',
+      'Appointments_day',
+      'Appointments_text',
+      'user_id',
+    ],
     include: [
       {
         model: User,
-        attributes: ['username']
+        attributes: ['username'],
       },
-      Timeblock
-    ]
+      Timeblock,
+    ],
   })
     .then(appointments => {
-      appointments = appointments.map(appointment => appointment.get({ plain: true }));
-      console.log(appointments)
+      appointments = appointments.map(appointment =>
+        appointment.get({ plain: true })
+      );
+      // console.log(appointments)
       res.render('homepage', {
         appointments,
-        loggedIn: true
+        loggedIn: true,
       });
     })
     .catch(err => {
@@ -30,7 +39,5 @@ router.get('/', (req, res) => {
       res.status(500).json(err);
     });
 });
-
-
 
 module.exports = router;
