@@ -23,23 +23,25 @@ const appointmentdata = [
     Appointments_day: 'Tuesday',
     Appointments_text: 'X-ray broken arm',
     Appointments_type: 'X-ray',
+    user_id: 1,
   },
   {
-    Appointments_time: 10,
+    Appointments_time: 8,
     Appointments_date: 3,
     Appointments_day: 'Wednesday',
     Appointments_text: 'Covid test',
     Appointments_type: 'Testing',
+    user_id: 2,
   },
   {
-    Appointments_time: 11,
+    Appointments_time: 7,
     Appointments_date: 4,
     Appointments_day: 'Thursday',
     Appointments_text: 'Sore Throat',
     Appointments_type: 'Well-check',
+    user_id: 2,
   },
 ];
 
 const seedPosts = () => Appointment.bulkCreate(appointmentdata);
-
 module.exports = seedPosts;
