@@ -59,7 +59,6 @@ router.get('/', (req, res) => {
       appointments = appointments.map(appointment =>
         appointment.get({ plain: true })
       );
-      console.log(appointments[0].Appointments_text);
       res.render('scheduling', {
         appointments,
         loggedIn: true,
@@ -73,13 +72,13 @@ router.get('/', (req, res) => {
 
 router.get('/all', async (req, res) => {
   const appointments = await Appointment.findAll({
-    include: [
-      {
-        model: User,
-      },
-    ],
+    // include: [
+    //   {
+    //     model: User,
+    //   },
+    // ],
   });
-  console.log(appointments);
+  console.log(appointments[1].Appointments_time);
   res.json(appointments);
 });
 
