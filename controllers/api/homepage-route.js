@@ -7,20 +7,19 @@ router.get('/', async (req, res) => {
     const { user_id } = req.session;
     let appointments = user_id
       ? await Appointment.findAll({
-        where: {
-          user_id: req.session.user_id,
-        },
-        include: [
-          {
-            model: User,
-            attributes: ['username'],
+          where: {
+            user_id: req.session.user_id,
           },
-          Timeblock,
-        ],
-      }).then(appointments => appointments.map(appointment =>
-          appointment.get({ plain: true })
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+            },
+            Timeblock,
+          ],
+        }).then(appointments =>
+          appointments.map(appointment => appointment.get({ plain: true }))
         )
-      )
       : null;
 
     // console.log(appointments)
