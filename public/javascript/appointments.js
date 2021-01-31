@@ -13,21 +13,21 @@ async function newApptHandler(event) {
 
   const response = await fetch(`/api/schedule`, {
     method: 'GET',
-    body: JSON.stringify({
-      Appointments_date,
-      Appointments_time,
-      Appointments_text,
-    }),
+    // body: JSON.stringify({
+    //   Appointments_date,
+    //   Appointments_time,
+    //   Appointments_text,
+    // }),
     headers: {
       'Content-Type': 'application/json',
     },
   });
-
-  if (response.ok) {
-    document.location.reload();
-  } else {
-    alert(response.statusText);
-  }
+  console.log(response.body.Appointments_text)
+  // if (response.ok) {
+  //   document.location.reload();
+  // } else {
+  //   alert(response.statusText);
+  // }
 }
 
 document.querySelector('#myBtn').addEventListener('click', newApptHandler);

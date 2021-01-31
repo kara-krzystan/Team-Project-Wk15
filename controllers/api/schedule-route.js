@@ -59,7 +59,7 @@ router.get('/', (req, res) => {
       appointments = appointments.map(appointment =>
         appointment.get({ plain: true })
       );
-      console.log(appointments);
+      console.log(appointments[0].Appointments_text);
       res.render('scheduling', {
         appointments,
         loggedIn: true,
@@ -79,6 +79,7 @@ router.get('/all', async (req, res) => {
       },
     ],
   });
+  console.log(appointments);
   res.json(appointments);
 });
 

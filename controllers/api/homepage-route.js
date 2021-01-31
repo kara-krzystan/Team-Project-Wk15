@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
   })
     .then(appointments => {
       appointments = appointments.map(appointment => appointment.get({ plain: true }));
-      console.log(appointments)
       res.render('homepage', {
         appointments,
         loggedIn: true
