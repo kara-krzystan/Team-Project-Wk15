@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const User = require('../../models/User');
 
 //routes will use /api/SignUp/ {route}
 router.get('/', async (req, res) => {

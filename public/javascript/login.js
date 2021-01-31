@@ -19,10 +19,10 @@ async function loginFormHandler(event) {
 
     })
 
-    console.log(response)
+    console.log(await response.json())
     if (response.ok) {
       //debugger
-      document.location.replace('/api/homepage');
+      //document.location.replace('/api/homepage');
     } else {
       alert((await response.json()).message);
     }
@@ -64,8 +64,4 @@ function onSignIn(googleUser) {
       document.location.replace('/api/homepage');
     }
   }
-  if (googleUser) {
-    document.location.replace('/api/homepage');
-  }
-
 }
