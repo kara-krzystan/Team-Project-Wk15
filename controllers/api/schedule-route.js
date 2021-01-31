@@ -59,7 +59,6 @@ router.get('/', (req, res) => {
       appointments = appointments.map(appointment =>
         appointment.get({ plain: true })
       );
-
       res.render('scheduling', {
         appointments,
         loggedIn: true,

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { User } = require('../../models');
 
 //routes will use /api/SignUp/ {route}
 router.get('/', async (req, res) => {
@@ -7,6 +8,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log(req.body)
   User.create({
     username: req.body.username,
     password: req.body.password,
