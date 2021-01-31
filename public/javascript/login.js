@@ -3,7 +3,6 @@
 const users = []
 async function loginFormHandler(event) {
   event.preventDefault();
-  console.log("hi")
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
@@ -31,7 +30,7 @@ async function loginFormHandler(event) {
 
 document.querySelector(".login-form").addEventListener('submit', loginFormHandler);
 
-function onSignIn(googleUser) {
+async function onSignIn(googleUser) {
   console.log(googleUser)
 
   var profile = googleUser.getBasicProfile();
@@ -49,7 +48,7 @@ function onSignIn(googleUser) {
   const lastname = profile.getFamilyName();
 
   if (username && password && email && firstname && lastname) {
-    const response = fetch('/api/users', {
+    const response = await fetch('/api/login', {
       method: 'post',
       body: JSON.stringify({
         username,
@@ -61,7 +60,31 @@ function onSignIn(googleUser) {
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
+      console.log(response);
+      debugger
       document.location.replace('/api/homepage');
     }
+    else {
+      console.log("hi")
+      const response = await fetch('/api/signup', {
+        method: 'post',
+        body: JSON.stringify({
+          username,
+          password,
+          email,
+          firstname,
+          lastname,
+        }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (response.ok) {
+        document.location.replace('/api/homepage');
+      }
+    }
   }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 }
