@@ -2,10 +2,10 @@ const router = require('express').Router();
 const { Appointment, Timeblock, User } = require('../../models');
 
 router.get('/', async (req, res) => {
-  try{
-  console.log(req.session.user_id);
-  const { user_id } = req.session;
-    let appointments = user_id 
+  try {
+    console.log(req.session.user_id);
+    const { user_id } = req.session;
+    let appointments = user_id
       ? await Appointment.findAll({
         where: {
           user_id: req.session.user_id,
@@ -17,23 +17,22 @@ router.get('/', async (req, res) => {
           },
           Timeblock,
         ],
-      }).then ( appointments => 
-        appointments?.map(appointment =>
+      }).then(appointments => appointments.map(appointment =>
           appointment.get({ plain: true })
         )
-      ) 
-      : null ;
-  
+      )
+      : null;
+
     // console.log(appointments)
-    
+
     res.render('homepage', {
       appointments,
       loggedIn: true,
     });
-} catch (err) {
-  console.log(err);
-  res.status(500).json(err);
-}
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
