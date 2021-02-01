@@ -2,9 +2,9 @@ const router = require('express').Router();
 const { Appointment, Timeblock, User } = require('../../models');
 
 router.get('/', async (req, res) => {
+  const { user_id } = req.session;
   try {
     console.log(req.session.user_id);
-    const { user_id } = req.session;
     let appointments = user_id
       ? await Appointment.findAll({
           where: {
@@ -23,10 +23,16 @@ router.get('/', async (req, res) => {
       : null;
 
     // console.log(appointments)
-
+    const userSomething = await User.findOne({
+      where: {
+        id: user_id,
+      }
+    })
+    console.log(userSomething);
     res.render('homepage', {
       appointments,
       loggedIn: true,
+      user_id,
     });
   } catch (err) {
     console.log(err);

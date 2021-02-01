@@ -108,14 +108,21 @@ window.addEventListener('load', function () {
 const modal = document.getElementById('myModal');
 const btn = document.getElementById('myBtn');
 const span = document.getElementsByClassName('close')[0];
+const calendarArea = document.getElementById('calendarDays');
 btn.onclick = function () {
   modal.style.display = 'block';
 };
 span.onclick = function () {
   modal.style.display = 'none';
 };
+/*
+calendarArea.onclick = function (event) {
+  modal.style.display = 'block';
+}
+*/
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = 'none';
   }
 };
+
