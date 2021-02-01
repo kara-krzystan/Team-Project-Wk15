@@ -115,6 +115,25 @@ btn.onclick = function () {
 span.onclick = function () {
   modal.style.display = 'none';
 };
+modal.onclick = async (event) => {
+  if(event.target.type === "submit") {
+    const submitID = event.target.id
+    console.log(submitID);
+    const apptID = event.target.parentNode.parentNode.id;
+    try{
+      let response = await fetch('/api/schedule/ID/'+ apptID , {
+        method: 'post',
+        body: JSON.stringify({
+          submitID,
+        }),
+        headers: { 'Content-Type': 'application/json' },
+      })
+      console.log("success!!");
+    } catch (err) {
+      console.log('oops...' + err);
+    };
+  };
+}
 /*
 calendarArea.onclick = function (event) {
   modal.style.display = 'block';
