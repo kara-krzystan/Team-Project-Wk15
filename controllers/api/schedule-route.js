@@ -32,42 +32,41 @@ router.put('/', async (req, res) => {
 });
 
 //renders main scheduling page
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+  const { user_id } = req.session;
+  console.log(user_id);
   console.log('======================');
-  Appointment.findAll({
-    // where: {
-    //   user_id: req.session.user_id,
-    // },
-
-    attributes: [
-      'id',
-      'Appointments_time',
-      'Appointments_date',
-      'Appointments_day',
-      'Appointments_text',
-      // 'user_id'
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['username'],
-      },
-      Timeblock,
-    ],
-  })
-    .then(appointments => {
-      appointments = appointments.map(appointment =>
-        appointment.get({ plain: true })
-      );
-      res.render('scheduling', {
-        appointments,
-        loggedIn: true,
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+  let userSomething = await User.findOne({
+    where: {
+      id: user_id,
+    }
+  });
+  console.log(userSomething);
+  try{
+    let appointments = await Appointment.findAll({
+      // where: {
+      //   user_id: req.session.user_id,
+      // },
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        Timeblock,
+      ],
+    }).then(appointments => 
+      appointments.map(appointment => appointment.get({ plain: true }))
+    );
+    res.render('scheduling', {
+      appointments,
+      loggedIn: true,
+      userSomething,
     });
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  };
 });
 
 router.get('/all', async (req, res) => {
@@ -95,6 +94,33 @@ router.get('/:user', async (req, res) => {
     },
   });
 });
+
+router.post('/ID/:appt', async (req, res) => {
+  const { appt } = req.params;
+  console.log(appt + "  <--------------- the number is here");
+  req.session.User ? console.log(req.session.User) : console.log(req.session.user_id)
+  let {
+      Appointments_time, 
+      Appointments_date, 
+      Appointments_day, 
+      Appointments_text, 
+      Appointments_type,
+        } = await Appointment.findOne({
+    where: {
+      id: appt,
+    }
+  })
+  let appointment = await Appointment.create({
+    Appointments_time, 
+    Appointments_date, 
+    Appointments_day, 
+    Appointments_text, 
+    Appointments_type,
+    user_id: req.session.user_id,
+  })
+  console.log("hello, " + appt);
+  res.send(appt);
+})
 
 router.delete('/', async (req, res) => {
   //delete route code here

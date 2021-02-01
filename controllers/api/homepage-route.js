@@ -28,11 +28,12 @@ router.get('/', async (req, res) => {
         id: user_id,
       }
     })
-    console.log(userSomething);
+    console.log(userSomething.firstname);
     res.render('homepage', {
       appointments,
       loggedIn: true,
       user_id,
+      firstname: userSomething.firstname,
     });
   } catch (err) {
     console.log(err);
