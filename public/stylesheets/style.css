@@ -108,7 +108,6 @@ a:hover {
   height: 100%;
   width: 100%;
   display: flex;
-  /* flex: 1; */
   margin-top: 0;
 }
 
@@ -142,10 +141,6 @@ a:hover {
   margin: 3px auto;
   width: 98%;
 }
-
-/* .index-wrap {
-  max-width: 600px;
-} */
 
 .login-form,
 .signup-form,
@@ -363,7 +358,6 @@ button:focus {
 }
 
 footer {
-  /* border-top: 1px solid #212121; */
   background-color: #d3d3d3;
   display: flex;
   justify-content: center;
