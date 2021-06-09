@@ -1,43 +1,39 @@
 # Make A'Point
 
-With a pandemic all around the world and social anxiety at an all time peak, we need a scheduling app to save us. To help us resist any social interaction, we have an app you can use online with a desktop or mobile device so you won't need to go in or even call to get an appointment. How does it work? Just go to https://team-project-wk15.herokuapp.com/ signup or log in and see available dates for you to schedule and you're all set for your appointment!
+With a pandemic all around the world and social anxiety at an all time peak, we need a scheduling app to save us! Everyone needs to make medical appointments and all of us hate calling and talking on the phone to schedule them. Plus, it's 2021, we can't even *think* about spending hours in a crowded waiting room!  
+
+Make A'Point is a online scheduling app that makes scheduling, managing, and tracking your appointments as easy as 1-2-3! 
+
+## User Story
+
+AS A young person who needs to make medical appointments  
+I WANT to check availability, schedule, cancel, and reschedule appointments on my secure calendar app  
+SO THAT I can easily manage my appointments virtually, from anywhere, on any device  
+
+## Deployment
+
+Make A'Point v1.0 can be viewed at https://team-project-wk15.herokuapp.com
+
+## Screenshot
 
 ![screenshot](https://github.com/kara-krzystan/Team-Project-Wk15/blob/main/public/images/screenshot_landing_page.png)
 
-## Installation
 
-Run npm install and you're ready to go
+## Built With
 
-```bash
-npm install -y
-```
-
-## Usage
-
+- HTML/CSS
 - Javascript
-- CSS
 - Node.js
+- Express
+- Sequelize
+- MySQL
+- Handlebars.js
+- Passport.js
 - bcrypt
-- body-parser
-- sequelize
-- mysql
-- express
-- cookie-parser
 - dotenv
-- handlebars
-- nodemon
-- passport
-- prettier
-- eslint
+- Google Fonts
+- Heroku
 
-## Screenshots
+## Contributors
 
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
-
-## Contribution
-
-Made with pride by Benjamin McRae, Kara Krzystan, Kelsey Freeborg, Pat Paggi, Chris Werkheiser
-
-©️2021 Benjamin McRae, Kara Krzystan, Kelsey Freeborg, Pat Paggi, Chris Werkheiser
+Benjamin McRae, Kara Krzystan, Kelsey Freeborg, Pat Paggi, Chris Werkheiser
