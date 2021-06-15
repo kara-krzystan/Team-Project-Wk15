@@ -1,6 +1,7 @@
 # Make A'Point
 
-With a pandemic all around the world and social anxiety at an all time peak, we need a scheduling app to save us! Everyone needs to make medical appointments and all of us hate calling and talking on the phone to schedule them. Plus, it's 2021, we can't even *think* about spending hours in a crowded waiting room!  
+With a pandemic all around the world and social anxiety at an all time peak, we need a scheduling app to save us!  
+Everyone needs to make medical appointments and all of us hate calling and talking on the phone to schedule them. Plus, it's 2021, we can't even *think* about spending hours in a crowded waiting room!  
 
 Make A'Point is a online scheduling app that makes scheduling, managing, and tracking your appointments as easy as 1-2-3! 
 
